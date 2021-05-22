@@ -1,5 +1,7 @@
 package com.company;
 
+import javax.swing.plaf.synth.Region;
+
 public class Chapter2 {
     //В этом классе мы будем последовательно вызывать все методы, описанные далее
     public static void main(String[] args) {
@@ -51,8 +53,21 @@ public class Chapter2 {
 
         //16) Применение оператора break для выхода из вложенных циклов
         BreakLoop4();
+
+        //17) Продемонстрировать применение оператора continue
+        Continue();
+
+        //18) Применение оператора continue с метко
+        ContinueLabel();
+
+        //19) Продемонстрировать применение оператора return
+        Return();
+
+
     }
 
+
+    //region Основной код программы
     private static void Inches() {
         System.out.println("");
         long ci;
@@ -282,6 +297,40 @@ public class Chapter2 {
         }
         System.out.println("Циклы завершены!");
     }
+    //endregion
+
+    private static void Continue() {
+        System.out.println("");
+        for (int i=0; i<10; i++) {
+            System.out.print(i + " ");
+            if (i%2 == 0) continue;
+            System.out.println("");
+        }
+    }
+
+    private static void ContinueLabel() {
+        System.out.println();
+        outer: for (int i=0; i<10; i++) {
+        for (int j=0; j<10; j++){
+            if(j>i) {
+                System.out.println();
+                continue outer;
+            }
+            System.out.print(" " + (i*j));
+        }
+        }
+        System.out.println();
+    }
+
+    private static void Return() {
+        System.out.println();
+
+        boolean t = true;
+        System.out.println("До возврата");
+        if (t) return;
+        System.out.println("Этот оператор выполняться не будет");
+    }
+
 
 
 }
