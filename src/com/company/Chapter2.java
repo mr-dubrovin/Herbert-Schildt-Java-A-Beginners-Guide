@@ -39,6 +39,18 @@ public class Chapter2 {
 
         //12) Демонстрация роли побочных эффектов
         SideEffects();
+
+        //13) Демонстрация автоматического преобразования типа long в тип double
+        LtoD();
+
+        //14) Демонстрация приведения типов
+        CastDemo();
+
+        //15) Применение оператора break в качестве цивилизованной формы оператора goto
+        Break();
+
+        //16) Применение оператора break для выхода из вложенных циклов
+        BreakLoop4();
     }
 
     private static void Inches() {
@@ -205,6 +217,71 @@ public class Chapter2 {
         //по прежнему  отображается 1!
     }
 
+    private static void LtoD() {
+        long L;
+        double D;
+
+        L = 100123285L;
+        D = L;
+        System.out.println("L и D: " + L +" " + D);
+    }
+
+    private static void CastDemo() {
+        System.out.println("");
+        double x, y;
+        byte b;
+        int i;
+        char ch;
+
+        x = 10.0;
+        y = 3.0;
+
+        i = (int) (x / y); //Привести тип double к типу int, в данном случае теряется дробная часть числа
+        System.out.println("Целочисленный результат деления x / y: " + i);
+
+        i = 100;
+        b = (byte) i; //а в этом случае информация не теряется, тип byte может содержать значение 100.
+        System.out.println("Значение b: " + b);
+
+        i = 257;
+        b = (byte) i; //на этот раз информация теряется, тип byte не может содержать значение 257
+        System.out.println("Значение b: " + b);
+
+        b = 88; //Представление символа Х в коде ASCII
+        ch = (char) b; //Явное приведение несовместимых типов
+        System.out.println("ch: " + ch);
+
+    }
+
+    private static void Break() {
+        System.out.println("");
+        boolean t = true;
+
+        first: {
+            second: {
+            third: {
+                System.out.println("Предшествует оператору break.");
+                if (t) break second;
+                System.out.println("Этот оператор не будет выполняться.");
+            }
+                System.out.println("Этот оператор не будет выполняться.");
+            }
+            System.out.println("Этот оператор следует за блоком Second.");
+        }
+    }
+
+    private static void BreakLoop4() {
+        System.out.println("");
+        outer: for( int i=0; i<3; i++) {
+            System.out.print("Проход " + i + ": ");
+            for (int j=0; j<100; j++) {
+                if(j == 10) break outer; //Выход из обоих циклов
+                System.out.print(j + " ");
+            }
+            System.out.println("Эта строка не будет выводится!");
+        }
+        System.out.println("Циклы завершены!");
+    }
 
 
 }
